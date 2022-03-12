@@ -24,8 +24,7 @@ const style = {
 
 const Header = () => {
   const [selectedNav, setSelectedNav] = useState('swap')
-  const { connectWallet, currentAccount } =
-    useContext(TransactionContext)
+  const { connectWallet, currentAccount } = useContext(TransactionContext)
 
   return (
     <div className={style.wrapper}>
@@ -79,12 +78,20 @@ const Header = () => {
             <AiOutlineDown />
           </div>
         </div>
-        <div
-          onClick={() => connectWallet()}
-          className={`${style.button} ${style.buttonPadding} ${style.buttonAccent}`}
-        >
-          Connect Wallet
-        </div>
+        {currentAccount ? (
+          <div className={`${style.button} ${style.buttonPadding}`}>
+            <div className={style.buttonTextContainer}>
+              0x832...fh3
+            </div>
+          </div>
+        ) : (
+          <div
+            onClick={() => connectWallet()}
+            className={`${style.button} ${style.buttonPadding} ${style.buttonAccent}`}
+          >
+            Connect Wallet
+          </div>
+        )}
       </div>
       <div className={`${style.button} ${style.buttonPadding}`}>
         <div className={`${style.buttonIconContainer} mx-2`}>
